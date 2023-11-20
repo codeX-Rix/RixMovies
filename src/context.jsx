@@ -15,6 +15,7 @@ const AppProvider = ({ children }) => {
       const data = await res.json();
       
       if(data.Response === "True"){
+        setIsLoading(false)
         setMovie(data.Search)
       }else{
         setIsError({
@@ -31,7 +32,7 @@ const AppProvider = ({ children }) => {
     getMovies(API_URL)
   })
 
-  return <AppContext.Provider value={"rixShaikh"}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{isError, isLoading, movie}}>{children}</AppContext.Provider>;
 };
 
 const useGlobalContext = () => {
